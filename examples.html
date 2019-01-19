@@ -40,7 +40,19 @@
             //-------------------------------
             // Minimal
             //-------------------------------
-            $('#myTags').tagit();
+            $('#myTags').tagit({
+                autocomplete:{
+                    autoFill:true,//数据源填充进input
+                    autoFocus:true,//自动选中数据源，回车键，空格键，tab键即可触发回调函数select
+                    source:sampleTags,
+                    select:function (evt, ui) {
+                        $('#myTags').tagit("createTag",ui.item)
+                    }
+                },
+                beforeTagAdded:function (evt, ui) {
+                    //tag校验
+                }
+            });
 
             //-------------------------------
             // Single field
